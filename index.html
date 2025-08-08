@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>Disaster Management</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">Dashboard</a>
+                <a href="#disasters" class="nav-link" data-section="disasters">Disasters</a>
+                <a href="#resources" class="nav-link" data-section="resources">Resources</a>
+                <a href="#volunteers" class="nav-link" data-section="volunteers">Volunteers</a>
+                <a href="#incidents" class="nav-link" data-section="incidents">Incidents</a>
+                <a href="#evacuation" class="nav-link" data-section="evacuation">Evacuation</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <h1>Emergency Dashboard</h1>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="active-disasters-count">0</h3>
+                        <p>Active Disasters</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="available-resources-count">0</h3>
+                        <p>Available Resources</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="available-volunteers-count">0</h3>
+                        <p>Available Volunteers</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="pending-incidents-count">0</h3>
+                        <p>Pending Incidents</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="recent-disasters">
+                    <h2>Recent Disasters</h2>
+                    <div id="recent-disasters-list" class="disaster-list">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+                <div class="quick-actions">
+                    <h2>Quick Actions</h2>
+                    <div class="action-buttons">
+                        <button class="action-btn emergency" onclick="reportIncident()">
+                            <i class="fas fa-plus"></i>
+                            Report Incident
+                        </button>
+                        <button class="action-btn primary" onclick="registerVolunteer()">
+                            <i class="fas fa-user-plus"></i>
+                            Register Volunteer
+                        </button>
+                        <button class="action-btn warning" onclick="createDisasterAlert()">
+                            <i class="fas fa-broadcast-tower"></i>
+                            Create Alert
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Disasters Section -->
+        <section id="disasters" class="section">
+            <div class="section-header">
+                <h1>Disaster Alerts</h1>
+                <button class="btn primary" onclick="showDisasterForm()">
+                    <i class="fas fa-plus"></i> New Alert
+                </button>
+            </div>
+            <div id="disasters-list" class="cards-grid">
+                <!-- Dynamic content -->
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="section">
+            <div class="section-header">
+                <h1>Emergency Resources</h1>
+                <button class="btn primary" onclick="showResourceForm()">
+                    <i class="fas fa-plus"></i> Add Resource
+                </button>
+            </div>
+            <div id="resources-list" class="cards-grid">
+                <!-- Dynamic content -->
+            </div>
+        </section>
+
+        <!-- Volunteers Section -->
+        <section id="volunteers" class="section">
+            <div class="section-header">
+                <h1>Volunteers</h1>
+                <button class="btn primary" onclick="showVolunteerForm()">
+                    <i class="fas fa-user-plus"></i> Register Volunteer
+                </button>
+            </div>
+            <div id="volunteers-list" class="cards-grid">
+                <!-- Dynamic content -->
+            </div>
+        </section>
+
+        <!-- Incidents Section -->
+        <section id="incidents" class="section">
+            <div class="section-header">
+                <h1>Incident Reports</h1>
+                <button class="btn primary" onclick="showIncidentForm()">
+                    <i class="fas fa-plus"></i> Report Incident
+                </button>
+            </div>
+            <div id="incidents-list" class="cards-grid">
+                <!-- Dynamic content -->
+            </div>
+        </section>
+
+        <!-- Evacuation Section -->
+        <section id="evacuation" class="section">
+            <div class="section-header">
+                <h1>Evacuation Routes</h1>
+            </div>
+            <div id="evacuation-routes-list" class="cards-grid">
+                <!-- Dynamic content -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Forms -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-body">
+                <!-- Dynamic form content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div id="message" class="message">
+        <span id="message-text"></span>
+        <button onclick="hideMessage()" class="close-msg">&times;</button>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
