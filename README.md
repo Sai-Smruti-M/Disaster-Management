@@ -1,9 +1,9 @@
 # Disaster Management
 
-The Disaster Management Dashboard is a full-stack web application designed to monitor, manage, and respond to disaster-related events in real time. Built using Flask, MySQL, and modular frontend technologies, it provides a centralized interface for tracking active disasters, available resources, volunteer coordination, incident reports, and evacuation status.
+The Disaster Management Dashboard is a full-stack web application designed to monitor, manage, and respond to disaster-related events in real time. It provides a centralized interface for tracking active disasters, available resources, volunteer coordination, incident reports, and evacuation status.
 
 ## 🛠 Skills
-HTML, CSS, Javascript
+HTML, CSS, Javascript 
 
 
 ## Features
@@ -16,6 +16,8 @@ HTML, CSS, Javascript
 - Cross platform
 
 
+## To view the website
+Visit: https://sai-smruti-m.github.io/Disaster-Management/
 ## Authors
 
 - [@Sai-Smruti-M](https://github.com/Sai-Smruti-M)
